@@ -1,78 +1,41 @@
 using System;
-using System.Collections;
-using System.Text;
-using JournalApp;
-using static System.Console;
-
-namespace JournalApp
-{
 class Program
 {
-    static void Main(string[] args)
+  static void Main(string[] args)
+  { 
+    Journal journal = new Journal();
+
+    PromptGenerator promptGenerator = new PromptGenerator();
+
+    do 
     {
-     Journal myJournal = new Journal();
-	    
-          bool isChoiceValid = false;
-            string choice = "";
-              do		
-            {
-              
-              ForegroundColor = ConsoleColor.DarkGray;
-
-                WriteLine(" \nPlease select one of the following choices");
-                WriteLine("1. Write");
-                WriteLine("2. Display");
-                WriteLine("3. Load");
-                WriteLine("4. Save");
-                WriteLine("5. Qiuit");
-          
-              ForegroundColor = ConsoleColor.DarkGreen;
-                choice = ReadLine().Trim();
-          
-              if (choice == "1" || choice == "2" || choice == "3" || choice == "4" || choice == "5")
-                {
-                  isChoiceValid = true;
-                }
-              else
-              {
-            ForegroundColor = ConsoleColor.Red;
-              WriteLine($"\"{choice}\" is not a valid option. Please select between choices 1 - 5.");
-                WaitForKey();
-              }
-
-		}
-		  while (!isChoiceValid);
-		    return "choice";
+      Console.WriteLine(" Welcome to the Journal Program");
 
 
-        private void RunMenu()
-	{
-		        string choice;
-              do
-              {
-                choice = GetChoice();
-                  switch(choice)
-                {
-                  case"1":
-                    AddEntry();
-                    break;
-                  case "2":
-                    DisplayJournalContent();
-                    break;
-                  case"3":
-                    Load();
-                    break;
-                  case"4":
-                    Save();
-                    break;
-                  case"5":
-                    Clear();
-                    break;	
-                  default:
-                    break;
-                }
-              } while(choice != "5");
-              }
-    }  
+      string inputU = Console.ReadLine();
+
+      if (inputU == "1")
+      {
+        string pop = promptGenerator.GetRandomPrompt();
+        Console.WriteLine(pop);
+
+        string pop2 = Console.ReadLine();
+      
+        Entry entry = new Entry();
+        entry._promptText = pop;
+        entry._entryText = pop2;
+        DateTime theCurrentTime = DateTime.Now;
+        string dateText = theCurrentTime.ToShortDateString();
+        entry._date = dateText;
+
+        journal.AddEntry(entry);
+      }
+       if (inputU == "2")
+       {
+         journal.DisplayAll();
+       }
+    }
+    while (true);
+ 
   }
 }

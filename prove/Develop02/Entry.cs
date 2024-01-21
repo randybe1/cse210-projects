@@ -1,15 +1,10 @@
-using System;
-using System.Collections;
-using System.Text;
-using static System.Console;
-using System.IO;
-using JournalApp;
 public class Entry
 {
     public string _date;
     public string _promptText;
     public string _entryText;
- private void AddEntry () 
+    
+    /**public void AddEntry () 
 	{
 		ForegroundColor = ConsoleColor.Black;
 		WriteLine("\nType EXIT and press enter to stop");
@@ -40,10 +35,10 @@ public class Entry
 			WriteLine("\nPress any Key...");
 			ReadKey(true);
     }
-
-    public void Dispaly()
+*/
+    public void Display()
     {
-       
+       Console.WriteLine($"{_date} - {_promptText} - {_entryText}");
     }
 
 }
