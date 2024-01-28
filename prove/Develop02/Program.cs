@@ -3,39 +3,73 @@ class Program
 {
   static void Main(string[] args)
   { 
-    Journal journal = new Journal();
-
+    Journal Journal = new Journal();
     PromptGenerator promptGenerator = new PromptGenerator();
 
-    do 
+    promptGenerator.CreatePrompts();
+   
+    Console.WriteLine(" Welcome to the Journal Program");
+
+    bool run = true;
+
+    while (run)
     {
-      Console.WriteLine(" Welcome to the Journal Program");
 
+      Console.WriteLine("Please select one of the following choices:");
+      Console.WriteLine("1. Write");
+      Console.WriteLine("2. Display");
+      Console.WriteLine("3. Load");
+      Console.WriteLine("4. Save");
+      Console.WriteLine("5. Quit");
+      Console.WriteLine("What would you like to do?");
 
-      string inputU = Console.ReadLine();
+       string choice = Console.ReadLine().Trim();
+       string randomPrompt = promptGenerator.ChooseRandomPrompt();
 
-      if (inputU == "1")
+      if (choice == "1")
       {
-        string pop = promptGenerator.GetRandomPrompt();
-        Console.WriteLine(pop);
+        Console.WriteLine("This Journal can accept multiple lines of text, Journal away! and then type 'exit' when finished.");
+        Console.WriteLine(randomPrompt);
+        string entry = "";
 
-        string pop2 = Console.ReadLine();
-      
-        Entry entry = new Entry();
-        entry._promptText = pop;
-        entry._entryText = pop2;
-        DateTime theCurrentTime = DateTime.Now;
-        string dateText = theCurrentTime.ToShortDateString();
-        entry._date = dateText;
+      bool shouldContinue = true;
+      while (shouldContinue)
+      {
+        string line = Console.ReadLine();
 
-        journal.AddEntry(entry);
+      if(line.ToLower().Trim()== "exit")
+        {
+          shouldContinue = false;
+        }
+      else{
+              entry += line + "\n";
+            }
+        }
+        Journal.AddEntry(randomPrompt, entry);
       }
-       if (inputU == "2")
-       {
-         journal.DisplayAll();
-       }
+        else if(choice == "2")
+        {
+          Journal.DisplayEntry();
+        }
+        else if (choice == "3")
+        {
+          Journal.LoadJournalFile();
+        }
+        else if (choice =="4")
+         {
+           Journal.SaveJournalFile();
+         }
+
+         else if (choice =="5")
+         {
+           Console.WriteLine("Thank you for using the journal program!");
+           run = false;
+          }
+           //added an exception to catch if anything is entered besides 1-5
+            else 
+            {
+                Console.WriteLine($"\"{choice}\" is not a valid selection.  Please enter something between 1 - 5.");
+            }
+      }
     }
-    while (true);
- 
-  }
 }

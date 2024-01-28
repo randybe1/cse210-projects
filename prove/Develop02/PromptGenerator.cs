@@ -1,19 +1,30 @@
+using System;
+using System.IO;
 public class PromptGenerator
 {
-    public List<string> _prompts = new List<string>
+    public List<String> _prompts = new List<String>();
+
+    Random randomGenerator = new Random();
+public void CreatePrompts()
+   {
+      string prompt1 = "How was your day?";
+      _prompts.Add(prompt1);
+      string prompt2 = "What was the highlight of your day?";
+      _prompts.Add(prompt2);
+      string prompt3 = "What was the strongest emotion you have felt today and why?";
+      _prompts.Add(prompt3);
+      string prompt4 = "If you could change anything about today what would that be?";
+      _prompts.Add(prompt4);
+      string prompt5 = "What was your goals for today?";
+      _prompts.Add(prompt5);
+      string prompt6 = "Were you able to acheive your set goals for today?";
+      _prompts.Add(prompt6);
+   } 
+    public string ChooseRandomPrompt()
     {
-        "Who was the most interesting person I interacted with today?",
-        "What was the best part of my day",
-        "How did I see the hand of the Lord in my life today?",
-        "What was the strongest emotion I felt today?",
-        "If I had one thing I could do over today, what would it be?"
-    };
-    
-    public string GetRandomPrompt()
-    {
-        Random r = new Random();
-        int numRandom = r.Next(0,_prompts.Count);
-        return _prompts[numRandom];
+        int randomNumber = randomGenerator.Next(0, _prompts.Count);
+        string prompt = _prompts[randomNumber];
+        return prompt;
     }
 
 }
