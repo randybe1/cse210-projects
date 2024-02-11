@@ -85,9 +85,7 @@ namespace Develop05
     public void ShowMainMenu()
     {
 
-        //Console.Clear();
-
-        Console.WriteLine($"You have {_totalPoints} points");
+            Console.WriteLine($"You have {_totalPoints} points");
         Console.WriteLine();
         Console.WriteLine("Menu Options: ");
         Console.WriteLine("   1. Create New Goal");
@@ -99,18 +97,38 @@ namespace Develop05
         Console.Write("Select a choice from the menu: ");
     }
 
-    public int SelectTypeOfGoal()
-    {
-        Console.Clear();
-        Console.WriteLine("The Types of goals are:");
-        Console.WriteLine("  1. Simple Goal");
-        Console.WriteLine("  2. Eternal Goal");
-        Console.WriteLine("  3. Checklist Goal");
-        Console.Write("Which type of goal would you like to create? ");
-        int userChoice = Convert.ToInt32(Console.ReadLine());
-        return userChoice;
+ public int SelectTypeOfGoal()
+{
+    Console.Clear();
+    Console.WriteLine("The Types of goals are:");
+    Console.WriteLine("  1. Simple Goal");
+    Console.WriteLine("  2. Eternal Goal");
+    Console.WriteLine("  3. Checklist Goal");
 
+    int userChoice;
+    while (true)
+    {
+        Console.Write("Which type of goal would you like to create? ");
+        if (int.TryParse(Console.ReadLine(), out userChoice))
+        {
+            if (userChoice >= 1 && userChoice <= 3)
+            {
+                break;
+            }
+            else
+            {
+                Console.WriteLine("Invalid choice. Please enter a number between 1 and 3.");
+            }
+        }
+        else
+        {
+            Console.WriteLine("Invalid input. Please enter a valid number.");
+        }
     }
+
+    return userChoice;
+}
+
 
     public void AddGoalObject(Goal goal)
     {
