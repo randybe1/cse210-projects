@@ -1,33 +1,32 @@
 using System;
-using System.Drawing;
-using Learning05;
 
-class Program
+namespace Learning05
 {
-     static void Main(string[] args)
+    class Program
     {
-        
-        List<Shape> shapes = new List<Shape>();
-
-        Square s1 = new Square("Red", 3);
-        shapes.Add(s1);
-
-        Rectangle s2 = new Rectangle("Blue", 4, 5);
-        shapes.Add(s2);
-
-        Circle s3 = new Circle("Green", 6);
-        shapes.Add(s3);
-
-        foreach (Shape s in shapes)
+        static void Main(string[] args)
         {
-           
-            string color = s.GetColor();
-            
-            double area = s.GetArea();
+            List<Shape> shapes = new List<Shape>(); // List of Shape, not List of Square
 
-            Console.WriteLine($"The {color} shape has an area of {area}.");
+            Square s1 = new Square("Red", 3);
+            shapes.Add(s1);
+
+            Rectangle s2 = new Rectangle("Blue", 4, 5);
+            shapes.Add(s2);
+
+            Circle s3 = new Circle("Green", 6);
+            shapes.Add(s3);
+
+            foreach (Shape s in shapes)
+            {
+                string color = s.GetColor(); // Accessing the color field directly
+
+                double area = s.GetArea();; // Calling the ComputeArea() method
+
+                Console.WriteLine($"The {color} shape has an area of {area}.");
+            }
         }
+
     }
 }
-
 
