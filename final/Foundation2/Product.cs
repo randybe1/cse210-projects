@@ -7,12 +7,12 @@ namespace Foundation2
 {
     public class Product
     {
-      private string _productName;
-    private string _productId;
-    private double _price;
-    private double _quantity;
+        private string _productName;
+        private string _productId;
+        private double _price;
+        private double _quantity;
     // price * quantity
-    public Product(string productName, string productId, double price, int quantity) {
+    public Product(string productName, string productId, double price, double quantity) {
         _productName = productName;
         _productId = productId;
         _price = price;
