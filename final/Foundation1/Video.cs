@@ -1,45 +1,47 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace Foundation1
 {
-    public class Video
-    {
+public class Video
+{
+    private string _title;
+    private string _author;
+    private string _length;
+
+    // Constructor
     public Video(string title, string author, string length)
     {
-
         _title = title;
         _author = author;
         _length = length;
     }
-        string _title;
-        string _author;
-        string _length;
 
-    public List<Comment> commentList = new List<Comment>();
+    // List to store comments
+    private List<Comment> _comments = new List<Comment>();
 
-    public void Comments()
+    // Method to display comments
+    public void DisplayComments()
     {
-        //returns the number of comments
-        int count = commentList.Count();
-        foreach (Comment comment in commentList)
+        foreach (Comment comment in _comments)
         {
-            comment.DisplayComments();
+            comment.Display();
         }
-        Console.WriteLine($"{count} comments\n");
+        Console.WriteLine($"{_comments.Count} comments\n");
     }
 
-    public void AddComment(string _name, string _comment)
+    // Method to add a new comment
+    public void AddComment(string name, string text)
     {
-        commentList.Add(new Comment(_name, _comment));
+        _comments.Add(new Comment(name, text));
     }
 
-    public void VideoInfo()
+    // Method to display video information
+    public void DisplayVideoInfo()
     {
         Console.WriteLine($"{_title}, {_author}, {_length}");
     }
+}
 
-    }
 } 
